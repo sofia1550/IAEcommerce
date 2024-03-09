@@ -8,7 +8,7 @@ const SlideContent1: React.FC = () => (
       Sustainable E-Commerce through AI Innovation
     </TypographyStyled>
     <TypographyStyled variant="body1" paragraph>
-      We're committed to fostering sustainability in e-commerce. Our AI-driven
+      Were committed to fostering sustainability in e-commerce. Our AI-driven
       solutions not only enhance efficiency but also aim to minimize the
       environmental footprint of digital commerce practices. From optimizing
       logistics to reduce carbon emissions to promoting eco-friendly products,
