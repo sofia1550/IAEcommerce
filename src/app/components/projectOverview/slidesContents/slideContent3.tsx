@@ -4,7 +4,7 @@ import TypographyStyled from "../effects&syles/TypographyStyled";
 
 const SlideContent1: React.FC = () => (
   <>
-    <TypographyStyled variant="h4" as="h2" gutterBottom>
+    <TypographyStyled variant="h4"  gutterBottom>
       Streamlining Operations with AI-Driven Analytics
     </TypographyStyled>
     <TypographyStyled variant="body1" paragraph>

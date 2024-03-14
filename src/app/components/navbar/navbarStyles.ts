@@ -4,81 +4,94 @@ import { motion } from "framer-motion";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
 
 import styled from "styled-components";
+// Mejoras en Nav para garantizar una transición suave y un gradiente más moderno.
 export const Nav = styled(motion.nav)`
   flex-grow: 1;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  z-index: 9999 !important; 
-
-`;
-
-export const Title = styled(Typography)`
-  @apply text-white;
-  font-weight: bold;
-  letter-spacing: 1px;
-  flex-grow: 1; 
-  text-align: center;
-`;
-
-export const CustomAppBar = styled(AppBar)`
-  background: transparent;
-  box-shadow: none;
-  @apply relative; // Mantenemos esto
-  z-index: 1100; 
-`;
-export const CustomToolbar = styled(Toolbar)`
-  @apply flex justify-between container mx-auto px-4;
+  background: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
   z-index: 9999;
 `;
 
+// Actualización de Title para que resalte sobre el gradiente mejorado.
+export const Title = styled(Typography)`
+  color: #ffffff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  flex-grow: 1;
+  text-align: center;
+`;
+
+// Manteniendo CustomAppBar transparente para una integración visual completa.
+export const CustomAppBar = styled(AppBar)`
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+  z-index: 1100;
+`;
+
+// CustomToolbar ajustado para promover una estructura limpia y moderna.
+export const CustomToolbar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0 24px;
+  z-index: 9999;
+`;
+
+// Mejorando StyledIconButton con efecto hover refinado y moderno.
 export const StyledIconButton = styled(IconButton)`
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
   }
 `;
 
+// StyledLink con una transición más suave para mejorar la experiencia de usuario.
 export const StyledLink = styled(Typography)`
   cursor: pointer;
   color: white;
-  margin: 0 10px; 
+  margin: 0 10px;
   &:hover {
-    color: #bbbbbb;
+    color: #a2facf; // Un color más claro para el hover que sea coherente con el header.
     text-decoration: none;
   }
   transition: color 0.3s ease;
 `;
+
+// MenuContainer con un gradiente complementario y moderno.
 export const MenuContainer = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to r, from-gray-700 to-gray-900);
+  background: linear-gradient(to right, #3a6073, #16222a);
   padding: 4px;
-  z-index: 1200; 
+  z-index: 1200;
 `;
-export const SignInButton = styled(StyledLink)`
+
+// SignInButton y SignUpButton actualizados para cohesión con el nuevo diseño.
+export const SignInButton = styled(StyledLink).attrs({ as: "button" })`
   margin-right: 15px;
   padding: 5px 15px;
-  border: 2px solid white;
+  border: 2px solid #ffffff;
   border-radius: 20px;
+  &:hover {
+    background-color: #ffffff;
+    color: #16222a;
+  }
   transition: background-color 0.3s ease, color 0.3s ease;
-  z-index: 1200; 
-
-  &:hover {
-    background-color: white;
-    color: #0f2027;
-  }
 `;
 
-export const SignUpButton = styled(StyledLink)`
+export const SignUpButton = styled(StyledLink).attrs({ as: "button" })`
   padding: 5px 15px;
-  background-color: #ff4081;
+  background-color: #3a8eba; // Un azul más vibrante para el botón de registro.
   border-radius: 20px;
-  transition: background-color 0.3s ease;
-
   &:hover {
-    background-color: #f50057;
+    background-color: #307896; // Un tono más oscuro para el hover.
   }
 `;
+
+// AuthButtonsContainer para alinear visualmente los botones de autenticación.
 export const AuthButtonsContainer = styled(Box)`
   display: flex;
   align-items: center;

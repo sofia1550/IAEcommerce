@@ -4,73 +4,69 @@ import { loadFull } from "tsparticles";
 
 const BackgroundAnimation = () => {
   const particlesInit = async (main) => {
+    // Precarga completa de la configuración de tsparticles
     await loadFull(main);
   };
 
   const particlesOptions = {
     fullScreen: {
       enable: false,
-      zIndex: -1, 
+      zIndex: -1, // Asegura que las partículas permanezcan en el fondo
     },
     particles: {
       number: {
-        value: 50, 
+        value: 60, // Balance entre visibilidad y rendimiento
         density: {
           enable: true,
-          area: 700, 
+          area: 800, // Ajusta la densidad para evitar sobrecarga visual
         },
       },
       color: {
-        value: ["#00fffc", "#ffffff", "#4acfd9"], 
+        value: ["#3A8EBA", "#ffffff", "#A2FACF"], // Colores que complementan el diseño moderno
         animation: {
           enable: true,
-          speed: 10, 
+          speed: 30, // Animación más viva
           sync: true,
         },
       },
       shape: {
-        type: "circle", 
-        options: {
-          polygon: {
-            sides: 6, 
-          },
-        },
+        type: "circle", // Mantenemos formas simples para complementar el diseño sin distraer
       },
       opacity: {
-        value: 0.6,
+        value: 0.8,
         random: true,
         animation: {
           enable: true,
-          speed: 2, 
-          minimumValue: 0.1,
+          speed: 3, // Animación sutil de opacidad
+          minimumValue: 0.3,
           sync: false,
         },
       },
       size: {
-        value: { min: 1, max: 3 },
+        value: { min: 1, max: 4 }, // Variedad en tamaño para dinamismo
         random: true,
         animation: {
-          enable: false,
+          enable: true,
+          speed: 4,
+          minimumValue: 0.1,
+          sync: false,
         },
       },
       links: {
         enable: true,
-        distance: 100, 
-        color: "#00fffc", 
-        opacity: 0.4, 
-        width: 1,
+        distance: 120,
+        color: "#A2FACF", // Links en colores que resaltan sobre el gradiente del fondo
+        opacity: 0.5, // Visibilidad moderada para evitar distracción
+        width: 2, // Líneas más definidas
       },
       move: {
         enable: true,
-        speed: 4, 
+        speed: 3, // Movimiento moderado para un efecto calmante
         direction: "none",
-        random: true, 
+        random: false,
         straight: false,
         outModes: {
-          default: "out",
-        },
-        attract: {
-          enable: false, 
+          default: "bounce", // Rebote en bordes para mantener las partículas en movimiento dentro del viewport
         },
       },
     },
@@ -79,35 +75,29 @@ const BackgroundAnimation = () => {
       events: {
         onHover: {
           enable: true,
-          mode: "repulse", 
+          mode: "repulse", // Interacción dinámica al pasar el cursor
         },
         onClick: {
           enable: true,
-          mode: "push", 
+          mode: "push", // Añadir partículas al hacer clic para interactividad
         },
       },
       modes: {
         bubble: {
-          distance: 200,
-          size: 4, 
+          distance: 250,
+          size: 8,
           duration: 2,
-          opacity: 0.8,
-        },
-        grab: {
-          distance: 140,
-          links: {
-            opacity: 0.7, 
-          },
+          opacity: 0.8, // Burbujas más grandes y visibles al interactuar
         },
         repulse: {
-          distance: 120, 
+          distance: 200,
         },
         push: {
-          quantity: 4, 
+          quantity: 4, // Moderar la cantidad de partículas añadidas al hacer clic
         },
       },
     },
-    detectRetina: true, 
+    detectRetina: true, // Ajuste para dispositivos de alta resolución
   };
 
   return (
@@ -115,7 +105,13 @@ const BackgroundAnimation = () => {
       id="tsparticles"
       init={particlesInit}
       options={particlesOptions}
-      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+      }}
     />
   );
 };
