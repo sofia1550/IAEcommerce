@@ -2,16 +2,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useMediaQuery, Box, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import {
   AuthButtonsContainer,
   CustomAppBar,
   CustomToolbar,
-  MenuContainer,
   Nav,
   SignInButton,
   SignUpButton,
@@ -24,6 +22,7 @@ import { RootState } from "../../../redux/store";
 import { useAuthToken } from "../../hooks/useAuthToken";
 import { checkAuthentication } from "@/redux/features/user/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import DropdownMenu from "./dropdownMenu/dropdownMenu"; 
 
 const Navbar = () => {
   const isAuthenticated = useSelector(
@@ -47,7 +46,7 @@ const Navbar = () => {
   };
 
   const handleLogoutClick = () => {
-    logout(); 
+    logout();
   };
 
   const toggleMenu = () => {
@@ -82,11 +81,6 @@ const Navbar = () => {
   useEffect(() => {
     dispatch(checkAuthentication());
   }, [dispatch]);
-  
-  const menuVariants = {
-    open: { opacity: 1, x: 0, transition: { stiffness: 20 } },
-    closed: { opacity: 0, x: "-100%", transition: { stiffness: 20 } },
-  };
 
   return (
     <Nav
@@ -112,59 +106,20 @@ const Navbar = () => {
             LogoTech
           </Title>
           <AnimatePresence>
-            {isMobile && isMenuOpen && (
-              <MenuContainer>
-                <motion.div
-                  initial="closed"
-                  animate="open"
-                  exit="closed"
-                  variants={menuVariants}
-                  className="absolute top-0 left-0 w-full bg-gradient-to-r from-gray-700 to-gray-900 p-4"
-                  id="menu-container"
-                >
-                  <StyledIconButton
-                    color="inherit"
-                    onClick={() => setMenuOpen(false)}
-                    aria-label="close menu"
-                    sx={{ position: "absolute", right: 8, top: 8 }}
-                  >
-                    <CloseIcon />
-                  </StyledIconButton>
-                  <Link href="/ecommerce" passHref>
-                    <StyledLink onClick={() => setMenuOpen(false)}>
-                      Ecommerce
-                    </StyledLink>
-                  </Link>
-                  <Link href="/sales-analysis" passHref>
-                    <StyledLink onClick={() => setMenuOpen(false)}>
-                      Sales Analysis
-                    </StyledLink>
-                  </Link>
-                  <Link href="/chatbot" passHref>
-                    <StyledLink onClick={() => setMenuOpen(false)}>
-                      AI Chatbot
-                    </StyledLink>
-                  </Link>
-                </motion.div>
-              </MenuContainer>
+            {isMobile && (
+              <DropdownMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
             )}
           </AnimatePresence>
           {!isMobile && (
             <Box className="flex justify-center flex-grow">
               <Link href="/ecommerce" passHref>
-                <StyledLink onClick={() => setMenuOpen(false)}>
-                  Ecommerce
-                </StyledLink>
+                <StyledLink>Ecommerce</StyledLink>
               </Link>
               <Link href="/sales-analysis" passHref>
-                <StyledLink onClick={() => setMenuOpen(false)}>
-                  Sales Analysis
-                </StyledLink>
+                <StyledLink>Sales Analysis</StyledLink>
               </Link>
               <Link href="/chatbot" passHref>
-                <StyledLink onClick={() => setMenuOpen(false)}>
-                  AI Chatbot
-                </StyledLink>
+                <StyledLink>AI Chatbot</StyledLink>
               </Link>
             </Box>
           )}
@@ -174,17 +129,13 @@ const Navbar = () => {
                 href="https://9175-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
-                <SignInButton onClick={() => setMenuOpen(false)}>
-                  Sign In
-                </SignInButton>
+                <SignInButton>Sign In</SignInButton>
               </Link>
               <Link
                 href="https://9175-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
-                <SignUpButton onClick={() => setMenuOpen(false)}>
-                  Register
-                </SignUpButton>
+                <SignUpButton>Register</SignUpButton>
               </Link>
             </AuthButtonsContainer>
           ) : (
