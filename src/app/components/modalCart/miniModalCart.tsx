@@ -72,7 +72,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         <Typography variant="body1">{item.name}</Typography>
         <Typography variant="body2">${item.price}</Typography>
       </Box>
-      <Box>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        {" "}
+        {/* Asegura que los elementos internos estén alineados verticalmente */}
         <Button
           onClick={() => dispatch(decrementQuantity(item.id))}
           disabled={item.quantity <= 1} // Deshabilita el botón si la cantidad es 1
