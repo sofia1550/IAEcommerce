@@ -33,23 +33,30 @@ const CustomModalBox = styled(Box)(({ theme }) => ({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "auto", // Hace que el ancho se ajuste al contenido con un máximo establecido
-  maxWwidth: "80%", // Establece un ancho máximo para evitar que sea demasiado grande
-  minHeight: "300px", // Altura mínima para asegurar que el modal no sea demasiado pequeño
-  maxHeight: "90vh", // Altura máxima para asegurar que siempre haya un margen con el borde de la ventana
-  overflowY: "auto", // Permite scroll vertical si el contenido excede la altura máxima
+  width: "auto", // Permite que el ancho se ajuste al contenido hasta un máximo establecido
+  maxWidth: "80%", // En dispositivos más grandes, limita el ancho para no ocupar toda la pantalla
+  minHeight: "300px", // Asegura un mínimo de contenido visible
+  maxHeight: "90vh", // Evita que el modal sea demasiado alto
+  overflowY: "auto", // Permite desplazamiento si el contenido excede la altura máxima
   bgcolor: "background.default",
   border: "2px solid #000",
   p: 4,
   borderRadius: theme.shape.borderRadius,
   background: "linear-gradient(135deg, #3a6073 0%, #16222a 100%)",
   color: "white",
-  boxShadow: `rgba(0, 0, 0, 0.24) 0px 3px 8px, rgba(0, 0, 0, 0.22) 0px 9px 28px, rgba(0, 0, 0, 0.20) 0px 11px 15px`, // Sombra más profunda y extendida
-  display: "flex", // Utiliza flexbox para manejar el contenido internamente
-  flexDirection: "column", // Organiza el contenido en una columna
-  alignItems: "center", // Centra los elementos horizontalmente
-  justifyContent: "space-around", // Distribuye el espacio entre elementos uniformemente
-  padding: theme.spacing(4), // Utiliza el sistema de espaciado del tema para el padding
+  boxShadow: `rgba(0, 0, 0, 0.24) 0px 3px 8px, rgba(0, 0, 0, 0.22) 0px 9px 28px, rgba(0, 0, 0, 0.20) 0px 11px 15px`,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "space-around",
+  padding: theme.spacing(4),
+  [theme.breakpoints.down("sm")]: {
+    // Media query para pantallas pequeñas
+    width: "90%", // Aumenta el ancho en dispositivos pequeños para usar más espacio de la pantalla
+    maxHeight: "80vh", // Reduce la altura máxima para asegurar que el modal no sea demasiado largo
+    padding: theme.spacing(2), // Reduce el padding para maximizar el espacio disponible
+    overflowY: "scroll", // Cambia a scroll para mejorar la accesibilidad en pantallas pequeñas
+  },
 }));
 
 // Componente para manejar cada ítem del carrito
