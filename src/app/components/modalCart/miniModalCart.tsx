@@ -50,7 +50,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         <img
           src={item.imageUrl}
           alt={item.name}
-          style={{ width: "60px", height: "60px", borderRadius: "4px" }}
+          style={{ width: "60px", height: "60px", borderRadius: "4.5px" }}
         />
       </Box>
       <Box sx={{ flex: 1 }}>
