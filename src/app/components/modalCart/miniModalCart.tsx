@@ -33,13 +33,23 @@ const CustomModalBox = styled(Box)(({ theme }) => ({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500, // Aumentamos el ancho para más espacio
+  width: "auto", // Hace que el ancho se ajuste al contenido con un máximo establecido
+  maxWwidth: "80%", // Establece un ancho máximo para evitar que sea demasiado grande
+  minHeight: "300px", // Altura mínima para asegurar que el modal no sea demasiado pequeño
+  maxHeight: "90vh", // Altura máxima para asegurar que siempre haya un margen con el borde de la ventana
+  overflowY: "auto", // Permite scroll vertical si el contenido excede la altura máxima
   bgcolor: "background.default",
   border: "2px solid #000",
   p: 4,
   borderRadius: theme.shape.borderRadius,
   background: "linear-gradient(135deg, #3a6073 0%, #16222a 100%)",
   color: "white",
+  boxShadow: `rgba(0, 0, 0, 0.24) 0px 3px 8px, rgba(0, 0, 0, 0.22) 0px 9px 28px, rgba(0, 0, 0, 0.20) 0px 11px 15px`, // Sombra más profunda y extendida
+  display: "flex", // Utiliza flexbox para manejar el contenido internamente
+  flexDirection: "column", // Organiza el contenido en una columna
+  alignItems: "center", // Centra los elementos horizontalmente
+  justifyContent: "space-around", // Distribuye el espacio entre elementos uniformemente
+  padding: theme.spacing(4), // Utiliza el sistema de espaciado del tema para el padding
 }));
 
 // Componente para manejar cada ítem del carrito
