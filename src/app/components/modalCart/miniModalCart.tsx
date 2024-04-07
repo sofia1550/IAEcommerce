@@ -9,6 +9,9 @@ import {
   decrementQuantity,
   removeFromCart,
 } from "../../../redux/features/cart/cartSlice"; // Asegúrate de importar las acciones correctamente
+import Image from 'next/image'
+
+
 interface CartProduct {
   id: string;
   name: string;
@@ -47,7 +50,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", mt: 2, width: "100%" }}>
       <Box sx={{ marginRight: "16px" }}>
-        <img
+        <Image
           src={item.imageUrl}
           alt={item.name}
           style={{ width: "60px", height: "60px", borderRadius: "4.5px" }}

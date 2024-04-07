@@ -6,7 +6,6 @@ import { GlobalStyle } from "./globalStyle/globalStyle";
 import Header from "./components/header/header";
 import Navbar from "./components/navbar/navbar";
 import ProjectOverview from "./components/projectOverview/projectOverview";
-import ProductsSection from "./components/products/productsSection/productSeccion";
 import { fetchProducts } from "./fetchProducts";
 import { Product } from "./components/products/productCard/productCard";
 import ProductPreviewSection from "./components/products/productPreviewSection/productPreviewSection";
