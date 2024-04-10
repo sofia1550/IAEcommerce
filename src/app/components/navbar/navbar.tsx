@@ -24,8 +24,6 @@ import { checkAuthentication } from "@/redux/features/user/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import DropdownMenu from "./dropdownMenu/dropdownMenu";
 import { toggleMenu } from "@/redux/features/ui/uiSlice";
-import { selectCartItems } from "@/redux/features/cart/cartSlice";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import CartIcon from "../modalCart/cartIcon";
 
 const Navbar = () => {
@@ -34,13 +32,10 @@ const Navbar = () => {
     (state: RootState) => state.user.isAuthenticated
   );
   const [isClient, setIsClient] = useState(false);
-  const [showBadge, setShowBadge] = useState<boolean>(true); // Asegúrate de que esto esté al nivel superior del componente
-
   const isMenuOpen = useSelector((state: RootState) => state.ui.isMenuOpen);
   const isMobile = useMediaQuery("(max-width:600px)");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const cartItems = useSelector((state: RootState) => selectCartItems(state));
 
   const { logout } = useAuthToken();
 
@@ -58,9 +53,6 @@ const Navbar = () => {
 
   const handleLogoutClick = () => {
     logout();
-  };
-  const handleOpenCartModal = () => {
-    setShowBadge(false);
   };
 
   // Maneja el cierre del menú si se hace clic fuera o se cambia el tamaño de la ventana
@@ -137,13 +129,13 @@ const Navbar = () => {
           {!isAuthenticated ? (
             <AuthButtonsContainer>
               <Link
-                href="https://9175-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://a058-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignInButton>Sign In</SignInButton>
               </Link>
               <Link
-                href="https://9175-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://a058-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignUpButton>Register</SignUpButton>
