@@ -8,7 +8,7 @@ import cartReducer from "../redux/features/cart/cartSlice"; // Asegúrate de que
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    product: productReducer, // Agrega esta línea
+    product: productReducer, 
     ui: uiSlice,
     cart: cartReducer,
   },

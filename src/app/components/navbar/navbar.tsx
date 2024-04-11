@@ -122,20 +122,18 @@ const Navbar = () => {
               </Link>
             </Box>
           )}
-          {isClient && (
-            <CartIcon  />
-          )}
+          {isClient && <CartIcon />}
 
           {!isAuthenticated ? (
             <AuthButtonsContainer>
               <Link
-                href="https://a058-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://9ed0-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignInButton>Sign In</SignInButton>
               </Link>
               <Link
-                href="https://a058-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://9ed0-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignUpButton>Register</SignUpButton>
