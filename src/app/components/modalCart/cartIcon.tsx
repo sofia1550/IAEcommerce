@@ -12,6 +12,9 @@ const CartIcon = () => {
   // Introduce un estado para rastrear el conteo de ítems en el carrito al momento de abrir el modal.
   const [itemsCountAtModalOpen, setItemsCountAtModalOpen] = useState(0);
 
+
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   // Actualiza el estado de showBadge cada vez que cambia el número de ítems en el carrito.
   useEffect(() => {
     // Solo muestra el badge si el número de ítems ha aumentado desde la última vez que el modal fue abierto.
@@ -37,13 +40,16 @@ const CartIcon = () => {
     setIsModalOpen(false);
     // No es necesario cambiar el estado aquí, el useEffect maneja la lógica para mostrar el badge.
   };
-
+  useEffect(() => {
+    console.log("Número de ítems en el carrito:", cartItems.length);
+  }, [cartItems]);
+  
   return (
     <>
       <Badge
-        badgeContent={cartItems.length}
+        badgeContent={totalItems}
         color="secondary"
-        invisible={!showBadge}
+        invisible={cartItems.length === 0} // Solo invisible si no hay ítems
       >
         <ShoppingCartIcon onClick={toggleModal} style={{ cursor: "pointer" }} />
       </Badge>

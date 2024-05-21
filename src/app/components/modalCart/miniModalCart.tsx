@@ -1,43 +1,32 @@
-// MiniCartModal.tsx
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Modal, Typography, Button, useTheme } from "@mui/material";
+import { Box, Modal, Typography, Button } from "@mui/material";
 import { styled } from "@mui/system";
 import { RootState } from "@/redux/store";
-import {
-  incrementQuantity,
-  decrementQuantity,
-  removeFromCart,
-} from "../../../redux/features/cart/cartSlice"; // Asegúrate de importar las acciones correctamente
+import { incrementQuantity, decrementQuantity, removeFromCart } from "../../../redux/features/cart/cartSlice"; // Asegúrate de importar las acciones correctamente
 import Image from "next/image";
+import { CartProduct } from "@/app/types/types";
 
-interface CartProduct {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  imageUrl: string; // Asegúrate de incluir esta propiedad
-}
 interface CartItemProps {
   item: CartProduct;
 }
+
 interface MiniCartModalProps {
   isOpen: boolean;
   handleClose: () => void;
 }
 
 // Estilos personalizados para el modal
-// Ajustamos el width para dar más espacio
 const CustomModalBox = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "auto", // Permite que el ancho se ajuste al contenido hasta un máximo establecido
-  maxWidth: "80%", // En dispositivos más grandes, limita el ancho para no ocupar toda la pantalla
-  minHeight: "300px", // Asegura un mínimo de contenido visible
-  maxHeight: "90vh", // Evita que el modal sea demasiado alto
-  overflowY: "auto", // Permite desplazamiento si el contenido excede la altura máxima
+  width: "auto",
+  maxWidth: "80%",
+  minHeight: "300px",
+  maxHeight: "90vh",
+  overflowY: "auto",
   bgcolor: "background.default",
   border: "2px solid #000",
   p: 4,
@@ -51,11 +40,10 @@ const CustomModalBox = styled(Box)(({ theme }) => ({
   justifyContent: "space-around",
   padding: theme.spacing(4),
   [theme.breakpoints.down("sm")]: {
-    // Media query para pantallas pequeñas
-    width: "90%", // Aumenta el ancho en dispositivos pequeños para usar más espacio de la pantalla
-    maxHeight: "80vh", // Reduce la altura máxima para asegurar que el modal no sea demasiado largo
-    padding: theme.spacing(2), // Reduce el padding para maximizar el espacio disponible
-    overflowY: "scroll", // Cambia a scroll para mejorar la accesibilidad en pantallas pequeñas
+    width: "90%",
+    maxHeight: "80vh",
+    padding: theme.spacing(2),
+    overflowY: "scroll",
   },
 }));
 
@@ -70,9 +58,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           src={item.imageUrl}
           alt={item.name}
           priority
-          width={60} // Especifica el ancho de la imagen
-          height={60} // Especifica la altura de la imagen
-          style={{ borderRadius: "4.5px" }} // Se mantiene el borderRadius en el estilo
+          width={60}
+          height={60}
+          style={{ borderRadius: "4.5px" }}
         />
       </Box>
       <Box sx={{ flex: 1 }}>
@@ -80,11 +68,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         <Typography variant="body2">${item.price}</Typography>
       </Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        {" "}
-        {/* Asegura que los elementos internos estén alineados verticalmente */}
         <Button
           onClick={() => dispatch(decrementQuantity(item.id))}
-          disabled={item.quantity <= 1} // Deshabilita el botón si la cantidad es 1
+          disabled={item.quantity <= 1}
         >
           -
         </Button>
@@ -104,15 +90,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   );
 };
 
-const MiniCartModal: React.FC<MiniCartModalProps> = ({
-  isOpen,
-  handleClose,
-}) => {
+const MiniCartModal: React.FC<MiniCartModalProps> = ({ isOpen, handleClose }) => {
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
     <Modal
@@ -131,11 +111,12 @@ const MiniCartModal: React.FC<MiniCartModalProps> = ({
           Carrito de Compras
         </Typography>
         {cartItems.length > 0 ? (
-          cartItems.map((item) => <CartItem key={item.id} item={item} />)
+          cartItems.map((item, index) => (
+            <CartItem key={`${item.id}-${index}`} item={item} />
+          ))
         ) : (
           <Typography>Tu carrito está vacío.</Typography>
         )}
-        {/* Mostrar el total del carrito */}
         <Typography variant="h6" sx={{ mt: 2 }}>
           Total: ${total.toFixed(2)}
         </Typography>
@@ -146,4 +127,5 @@ const MiniCartModal: React.FC<MiniCartModalProps> = ({
     </Modal>
   );
 };
+
 export default MiniCartModal;

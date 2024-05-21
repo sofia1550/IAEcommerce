@@ -1,14 +1,16 @@
-// Navbar.tsx
+// Navbar.tsx styles
 "use client";
 import { motion } from "framer-motion";
 import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-
 import styled from "styled-components";
+
 // Mejoras en Nav para garantizar una transición suave y un gradiente más moderno.
 export const Nav = styled(motion.nav)`
-  flex-grow: 1;
+  width: 100%;
   background: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
   z-index: 9999;
+  position: fixed; // Asegurar que el nav esté fijo en la parte superior
+  top: 0;
 `;
 
 // Actualización de Title para que resalte sobre el gradiente mejorado.
@@ -24,7 +26,9 @@ export const Title = styled(Typography)`
 export const CustomAppBar = styled(AppBar)`
   background: transparent;
   box-shadow: none;
-  position: fixed; // Cambiado de 'relative' a 'fixed'
+  position: fixed; // Asegurar que el AppBar esté fijo
+  width: 100%; // Hacer que ocupe todo el ancho
+  top: 0;
   z-index: 1100;
 `;
 

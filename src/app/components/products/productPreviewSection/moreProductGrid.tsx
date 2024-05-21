@@ -1,7 +1,7 @@
 import React from "react";
 import ProductCard from "../productCard/productCard"; // Asegúrate de que la ruta sea correcta
-import { Product } from "../productCard/productCard"; // Asegúrate de que la ruta y la exportación sean correctas
 import styled from "@emotion/styled";
+import { Product } from "@/app/types/types";
 
 const GridContainer = styled.div`
   display: flex;

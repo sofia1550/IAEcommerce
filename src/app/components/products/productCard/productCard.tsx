@@ -3,25 +3,19 @@ import {
   Card,
   CardActionArea,
   CardActions,
-  CardMedia,
   Button,
   Typography,
 } from "@mui/material";
 import styled from "styled-components";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
-
-export interface Product {
-  id: string; // Cambiado de number a string
-  name: string;
-  price: number;
-  imageUrl: string;
-  quantity: number; 
-}
+import { Product, CartProduct } from "@/app/types/types";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
 }
+
 const CustomCard = styled(Card)`
   max-width: 345px;
   width: 100%;
@@ -38,8 +32,10 @@ const CustomCard = styled(Card)`
   }
 `;
 
-const StyledCardMedia = styled(CardMedia)`
+const StyledCardMedia = styled.div`
+  position: relative;
   height: 200px;
+  width: 100%;
 `;
 
 const ProductInfo = styled.div`
@@ -51,12 +47,12 @@ const StyledButton = styled(Button)`
     margin-top: 8px;
     border-radius: 15px;
     font-weight: bold;
-    background-color: #007bff; // Un azul más claro para variar y atraer atención.
+    background-color: #007bff;
     color: white;
     width: 100%;
 
     &:hover {
-      background-color: #0056b3; // Un azul más oscuro para el hover.
+      background-color: #0056b3;
     }
   }
 `;
@@ -64,15 +60,34 @@ const StyledButton = styled(Button)`
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
-  // La lógica aquí no necesita cambio, ya que la acción addToCart espera un Product con id string
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    const cartProduct: CartProduct = {
+      ...product,
+      imageUrl: product.imageUrl || "",
+    };
+    dispatch(addToCart(cartProduct));
   };
 
   return (
     <CustomCard>
       <CardActionArea>
-        <StyledCardMedia image={product.imageUrl} title={product.name} />
+        <StyledCardMedia>
+          {product.imageFileName ? (
+            <Image
+              src={`http://localhost:3001/uploads/${product.imageFileName}`}
+              alt={product.name}
+              layout="fill"
+              objectFit="cover"
+            />
+          ) : (
+            <Image
+              src="/default-image.jpg"
+              alt="Imagen por defecto"
+              layout="fill"
+              objectFit="cover"
+            />
+          )}
+        </StyledCardMedia>
         <ProductInfo>
           <Typography gutterBottom variant="h6" component="div">
             {product.name}

@@ -1,8 +1,9 @@
 import React from "react";
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import styled from "styled-components";
-import ProductCard, { Product } from "../productCard/productCard"; // Asegúrate de ajustar la ruta de importación según tu estructura
+import ProductCard  from "../productCard/productCard"; // Asegúrate de ajustar la ruta de importación según tu estructura
 import { motion } from "framer-motion";
+import { Product } from "@/app/types/types";
 interface ProductsSectionProps {
   products: Product[];
 }

@@ -101,9 +101,12 @@ const Navbar = () => {
               <MenuIcon />
             </StyledIconButton>
           )}
-          <Title variant="h6" noWrap>
-            LogoTech
-          </Title>
+          <Link href="/" passHref>
+            <Title variant="h6" noWrap>
+              LogoTech
+            </Title>
+          </Link>
+
           <AnimatePresence>
             {isMobile && (
               <DropdownMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
@@ -127,13 +130,13 @@ const Navbar = () => {
           {!isAuthenticated ? (
             <AuthButtonsContainer>
               <Link
-                href="https://9ed0-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://cbd2-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignInButton>Sign In</SignInButton>
               </Link>
               <Link
-                href="https://9ed0-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://cbd2-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignUpButton>Register</SignUpButton>

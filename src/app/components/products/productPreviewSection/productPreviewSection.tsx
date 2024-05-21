@@ -5,7 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import ProductCard from "../productCard/productCard"; // Ajusta la importación según tu estructura
-import { Product } from "../productCard/productCard"; // Asegúrate de que esta importación sea correcta
 import MoreProductsGrid from "./moreProductGrid";
 import { useAppSelector, useAppDispatch } from "../../../../redux/hooks";
 import { setShowMore } from "../../../../redux/features/product/productSlice";
@@ -16,6 +15,7 @@ import {
   ViewMoreButtonContainer,
   ViewMoreButtonStyled,
 } from "./productPreviewStyles";
+import { Product } from "@/app/types/types";
 
 interface ProductPreviewSectionProps {
   products: Product[];

@@ -6,11 +6,18 @@ export interface Product {
   name: string;
   price: number;
   quantity: number;
-  imageUrl: string; // Agrega esta línea
+  imageUrl?: string; // Opcional
+  imageFileName?: string; // Opcional
 }
+
+export interface CartProduct extends Product {
+  imageUrl: string; // Obligatorio en el carrito
+}
+
 interface CartState {
-  cartItems: Product[];
+  cartItems: CartProduct[];
 }
+
 const isClient = typeof window !== "undefined";
 
 const initialState: CartState = {
@@ -27,10 +34,14 @@ export const cartSlice = createSlice({
       const index = state.cartItems.findIndex(
         (item) => item.id === action.payload.id
       );
+      const cartProduct: CartProduct = {
+        ...action.payload,
+        imageUrl: action.payload.imageUrl || "", // Proporciona un valor predeterminado si está indefinido
+      };
       if (index !== -1) {
         state.cartItems[index].quantity += 1; // Incrementa la cantidad si el producto ya está en el carrito
       } else {
-        state.cartItems.push({ ...action.payload, quantity: 1 }); // Añade el producto al carrito con cantidad inicial de 1
+        state.cartItems.push({ ...cartProduct, quantity: 1 }); // Añade el producto al carrito con cantidad inicial de 1
       }
       if (isClient) {
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));

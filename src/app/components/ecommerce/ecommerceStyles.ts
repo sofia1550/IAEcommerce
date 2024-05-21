@@ -1,70 +1,114 @@
 import styled from "styled-components";
 import { Button, TextField } from "@mui/material";
 
-// PanelContainer complementará el tema oscuro y moderno de tu Navbar
-export const PanelContainerDad = styled.div`
-  position: relative;
-  margin-bottom: 250px;
-
+export const SwiperContainer = styled.div`
+  width: 60%; /* Ajustar este valor para reducir el ancho en un 40% */
+  margin: 0 auto; /* Centrar el contenedor */
+  margin-bottom: 50px; /* Agregar margen inferior */
 `;
+
+export const PanelContainerDad = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Reducir el espacio entre tarjetas */
+  padding: 50px 0; /* Ajustar el padding si es necesario */
+  background: linear-gradient(145deg, #2c5364, #203a43, #0f2027);
+  min-height: 100vh;
+  align-items: center; /* Centrar verticalmente */
+`;
+
 export const PanelContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Ajuste del espacio entre elementos */
+  padding: 15px; /* Ajuste del padding para hacer la tarjeta más compacta */
+  background: linear-gradient(145deg, #e0f7fa, #80deea);
+  border-radius: 16px;
+  width: 240px; /* Reducción del ancho de las tarjetas */
+  margin: 10rem auto; /* Centrado de las tarjetas */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
 
-  gap: 20px;
-  padding: 20px;
-  position: relative;
-  top: 100px;
-  margin-bottom: 50px !important;
-
-  background-color: white; // Un fondo oscuro que complementa el Navbar
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1); // Sombra suave para darle profundidad
-  width: 80%;
-
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  &:hover {
+    transform: scale(1.05); /* Reducción del efecto de hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 `;
 
-// TextField estilizado para integrarse con el tema oscuro
 export const StyledTextField = styled(TextField)`
-  label {
-    color: #a2facf; // Color que combina con el esquema del Navbar
-  }
-  .MuiInputBase-input {
-    color: white; // Texto blanco para contraste
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      border-color: #a2facf; // Borde que combina
+  && {
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 8px;
+
+    label {
+      color: #007bb5;
+      font-weight: 500;
     }
-    &:hover fieldset {
-      border-color: #64acff; // Color de borde al pasar el mouse
+    .MuiInputBase-input {
+      color: #333;
     }
-    &.Mui-focused fieldset {
-      border-color: #a2facf; // Color de borde en foco
+    .MuiOutlinedInput-root {
+      fieldset {
+        border-color: #80deea;
+        border-radius: 8px;
+      }
+      &:hover fieldset {
+        border-color: #00bcd4;
+      }
+      &.Mui-focused fieldset {
+        border-color: #007bb5;
+      }
     }
   }
 `;
 
-// Botones estilizados para mantener coherencia con los estilos de la Navbar
 export const StyledButton = styled(Button)`
   && {
     color: white;
     font-weight: bold;
-    margin-top: 10px;
-    border-radius: 20px;
+    border-radius: 24px;
     padding: 10px 30px;
-    background-color: #3a6073; // Color principal que combina con el gradiente del Navbar
+    background-color: #007bb5;
+    box-shadow: 0 4px 8px rgba(0, 123, 181, 0.4);
+    transition: background-color 0.3s, transform 0.3s;
+
     &:hover {
-      background-color: #16222a; // Un tono más oscuro para el hover
+      background-color: #005f8f;
+      transform: translateY(-2px);
     }
   }
 `;
 
-// Proporcionar espacio adicional y organización visual
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  width: 100%;
+`;
+
+export const ImageContainer = styled.div`
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 10px; /* Ajustar el margen inferior */
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
 `;
