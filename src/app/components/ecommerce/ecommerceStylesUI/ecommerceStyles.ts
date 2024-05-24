@@ -28,6 +28,7 @@ export const PanelContainer = styled.div`
   border-radius: 16px;
   width: 240px; /* Reducción del ancho de las tarjetas */
   margin: 10rem auto; /* Centrado de las tarjetas */
+  margin-top: 20rem; 
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s, box-shadow 0.3s;
 

@@ -1,4 +1,3 @@
-// ProductPreviewSection.tsx
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -31,21 +30,23 @@ const ProductPreviewSection: React.FC<ProductPreviewSectionProps> = ({
     dispatch(setShowMore(!showMore));
   };
 
+  const slidesPerView = products.length < 3 ? products.length : 3;
+
   return (
     <PreviewContainer>
       <SectionTitle variant="h4">Productos Destacados</SectionTitle>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={30}
-        slidesPerView={3}
-        loop={true}
+        slidesPerView={slidesPerView}
+        loop={products.length >= 4}
         autoplay={{ delay: 2500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         navigation={true}
         breakpoints={{
           320: { slidesPerView: 1, spaceBetween: 10 },
           768: { slidesPerView: 2, spaceBetween: 20 },
-          1024: { slidesPerView: 3, spaceBetween: 30 },
+          1024: { slidesPerView: slidesPerView, spaceBetween: 30 },
         }}
       >
         {products.map((product, index) => (

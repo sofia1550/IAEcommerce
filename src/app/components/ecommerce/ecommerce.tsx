@@ -9,10 +9,13 @@ import {
 import { Product } from "@/redux/features/cart/cartSlice";
 import EcommerceUI from "./ecommerceStylesUI/ecommerceUI";
 import { AlertColor } from "@mui/material";
+import Sidebar from "./sidebar/sidebar";
 
 const Ecommerce = () => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.product.visibleProducts);
+  const filters = useAppSelector((state) => state.sidebar.filters);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarSeverity, setSnackbarSeverity] = useState<AlertColor>("info");
@@ -23,6 +26,40 @@ const Ecommerce = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    filterProducts();
+  }, [products, filters]);
+
+  const filterProducts = () => {
+    let tempProducts = [...products];
+    if (filters.name) {
+      tempProducts = tempProducts.filter((product) =>
+        product.name.toLowerCase().includes(filters.name.toLowerCase())
+      );
+    }
+    if (filters.minPrice !== null) {
+      tempProducts = tempProducts.filter(
+        (product) => product.price >= filters.minPrice!
+      );
+    }
+    if (filters.maxPrice !== null) {
+      tempProducts = tempProducts.filter(
+        (product) => product.price <= filters.maxPrice!
+      );
+    }
+    if (filters.minQuantity !== null) {
+      tempProducts = tempProducts.filter(
+        (product) => product.quantity >= filters.minQuantity!
+      );
+    }
+    if (filters.maxQuantity !== null) {
+      tempProducts = tempProducts.filter(
+        (product) => product.quantity <= filters.maxQuantity!
+      );
+    }
+    setFilteredProducts(tempProducts);
+  };
 
   const handleEditClick = (product: Product) => {
     if (!product.id) {
@@ -104,22 +141,24 @@ const Ecommerce = () => {
   };
 
   return (
-    <EcommerceUI
-      products={products}
-      editMode={editMode}
-      editedProduct={editedProduct}
-      selectedImage={selectedImage}
-      snackbarMessage={snackbarMessage}
-      openSnackbar={openSnackbar}
-      snackbarSeverity={snackbarSeverity}
-      handleEditClick={handleEditClick}
-      handleSaveChanges={handleSaveChanges}
-      handleDeleteProduct={handleDeleteProduct}
-      handleCancelEdit={handleCancelEdit}
-      handleImageChange={handleImageChange}
-      handleChange={handleChange}
-      setOpenSnackbar={setOpenSnackbar}
-    />
+    <>
+      <EcommerceUI
+        products={filteredProducts}
+        editMode={editMode}
+        editedProduct={editedProduct}
+        selectedImage={selectedImage}
+        snackbarMessage={snackbarMessage}
+        openSnackbar={openSnackbar}
+        snackbarSeverity={snackbarSeverity}
+        handleEditClick={handleEditClick}
+        handleSaveChanges={handleSaveChanges}
+        handleDeleteProduct={handleDeleteProduct}
+        handleCancelEdit={handleCancelEdit}
+        handleImageChange={handleImageChange}
+        handleChange={handleChange}
+        setOpenSnackbar={setOpenSnackbar}
+      />
+    </>
   );
 };
 

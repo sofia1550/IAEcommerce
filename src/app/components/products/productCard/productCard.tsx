@@ -76,15 +76,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Image
               src={`http://localhost:3001/uploads/${product.imageFileName}`}
               alt={product.name}
-              layout="fill"
-              objectFit="cover"
+              width={100}
+              height={100}
+              style={{ width: "100%", height: "auto" }}
             />
           ) : (
             <Image
               src="/default-image.jpg"
               alt="Imagen por defecto"
-              layout="fill"
-              objectFit="cover"
+              width={100}
+              height={100}
+              style={{ width: "100%", height: "auto" }}
             />
           )}
         </StyledCardMedia>

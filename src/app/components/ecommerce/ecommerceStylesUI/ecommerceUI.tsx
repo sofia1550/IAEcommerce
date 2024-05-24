@@ -60,7 +60,7 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
       <SwiperContainer>
         <Swiper
           initialSlide={2}
-          spaceBetween={10}
+          spaceBetween={5}
           centeredSlides={true}
           slidesPerView={1}
           pagination={{
@@ -145,7 +145,7 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
                           alt={product.name}
                           width={100}
                           height={100}
-                          objectFit="contain"
+                          priority
                         />
                       )}
                     </ImageContainer>
