@@ -14,6 +14,7 @@ import {
   StyledButton,
   StyledTextField,
   SwiperContainer,
+  SwiperPagination,
 } from "./ecommerceStyles";
 import { Product } from "@/redux/features/cart/cartSlice";
 import Image from "next/image";
@@ -65,6 +66,7 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
           slidesPerView={1}
           pagination={{
             clickable: true,
+            el: ".swiper-pagination",
           }}
           navigation={true}
           breakpoints={{
@@ -83,6 +85,7 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
           }}
           modules={[Pagination, Navigation]}
           className="mySwiper"
+          style={{ height: "calc(100% + 50px)" }} // Ajustar la altura
         >
           {products.map((product, index) => (
             <SwiperSlide key={`${product.id}-${index}`}>
@@ -120,6 +123,17 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
                       accept="image/*"
                       onChange={handleImageChange}
                     />
+                    {selectedImage && (
+                      <ImageContainer>
+                        <Image
+                          src={URL.createObjectURL(selectedImage)}
+                          alt="Selected Image"
+                          width={100}
+                          height={100}
+                          priority
+                        />
+                      </ImageContainer>
+                    )}
                     <ButtonContainer>
                       <StyledButton
                         variant="contained"
@@ -190,6 +204,7 @@ const EcommerceUI: React.FC<EcommerceUIProps> = ({
               </PanelContainer>
             </SwiperSlide>
           ))}
+          <SwiperPagination className="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"></SwiperPagination>
         </Swiper>
       </SwiperContainer>
       <Snackbar

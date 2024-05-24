@@ -4,17 +4,17 @@ import TextField from "@mui/material/TextField/TextField";
 import styled from "styled-components";
 
 export const SidebarContainer = styled.div`
-  width: 80%;
-  max-width: 800px;
-  height: 30vh; // Ajusta la altura según sea necesario
+  width: 100%;
+  max-width: 1000px;
+  height: 40vh; // Ajusta la altura según sea necesario
   overflow-y: auto; // Agrega scroll si el contenido excede la altura
-  background: linear-gradient(135deg, #16222a 0%, #3a6073 40%);
+  background: linear-gradient(145deg, #2c5364, #203a43);
   color: #000000;
-  position: fixed;
+  position: absolute;
   top: 10%;
   left: 50%;
   transform: translate(-50%, 0);
-  padding: 20px;
+  padding: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   z-index: 1000;

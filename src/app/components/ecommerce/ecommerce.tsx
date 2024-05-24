@@ -9,7 +9,6 @@ import {
 import { Product } from "@/redux/features/cart/cartSlice";
 import EcommerceUI from "./ecommerceStylesUI/ecommerceUI";
 import { AlertColor } from "@mui/material";
-import Sidebar from "./sidebar/sidebar";
 
 const Ecommerce = () => {
   const dispatch = useAppDispatch();

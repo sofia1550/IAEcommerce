@@ -4,7 +4,10 @@ import { Button, TextField } from "@mui/material";
 export const SwiperContainer = styled.div`
   width: 60%; /* Ajustar este valor para reducir el ancho en un 40% */
   margin: 0 auto; /* Centrar el contenedor */
-  margin-bottom: 50px; /* Agregar margen inferior */
+  margin-top: 35rem;
+  margin-bottom: 15rem; /* Agregar margen inferior */
+  position: relative; /* Agregar posición relativa */
+  padding-bottom: 100px; /* Aumentar espacio en la parte inferior para la paginación */
 `;
 
 export const PanelContainerDad = styled.div`
@@ -22,13 +25,14 @@ export const PanelContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Centrar verticalmente */
   gap: 10px; /* Ajuste del espacio entre elementos */
   padding: 15px; /* Ajuste del padding para hacer la tarjeta más compacta */
   background: linear-gradient(145deg, #e0f7fa, #80deea);
   border-radius: 16px;
   width: 240px; /* Reducción del ancho de las tarjetas */
-  margin: 10rem auto; /* Centrado de las tarjetas */
-  margin-top: 20rem; 
+  height: auto; /* Asegurarse de que la altura sea automática */
+  margin: 0 auto; /* Centrado de las tarjetas */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s, box-shadow 0.3s;
 
@@ -111,5 +115,13 @@ export const ImageContainer = styled.div`
 
   &:hover img {
     transform: scale(1.1);
+  }
+`;
+
+export const SwiperPagination = styled.div`
+  .swiper-pagination-bullets {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px !important; /* Ajustar el margen superior */
   }
 `;

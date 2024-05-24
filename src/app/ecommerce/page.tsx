@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Sidebar from "../components/ecommerce/sidebar/sidebar";
+import Footer from "../components/footer/footer";
 const Ecommerce = () => {
   return (
     <>
@@ -15,6 +16,7 @@ const Ecommerce = () => {
       <Sidebar />
       <GlobalStyle />
       <Ecommercee />
+      <Footer></Footer>
     </>
   );
 };
