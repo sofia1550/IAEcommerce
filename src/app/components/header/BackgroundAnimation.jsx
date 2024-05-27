@@ -102,7 +102,7 @@ const BackgroundAnimation = () => {
 
   return (
     <Particles
-      id="tsparticles"
+     /*  id="tsparticles"
       init={particlesInit}
       options={particlesOptions}
       style={{
@@ -111,7 +111,7 @@ const BackgroundAnimation = () => {
         left: 0,
         width: "100%",
         height: "100%",
-      }}
+      }} */
     />
   );
 };
