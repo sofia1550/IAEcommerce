@@ -12,7 +12,6 @@ const Ecommerce = () => {
   return (
     <>
       <Navbar />
-
       <Sidebar />
       <GlobalStyle />
       <Ecommercee />
