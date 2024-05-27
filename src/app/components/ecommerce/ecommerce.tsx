@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   fetchProducts,
@@ -26,11 +26,7 @@ const Ecommerce = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  useEffect(() => {
-    filterProducts();
-  }, [products, filters]);
-
-  const filterProducts = () => {
+  const filterProducts = useCallback(() => {
     let tempProducts = [...products];
     if (filters.name) {
       tempProducts = tempProducts.filter((product) =>
@@ -58,7 +54,11 @@ const Ecommerce = () => {
       );
     }
     setFilteredProducts(tempProducts);
-  };
+  }, [products, filters]);
+
+  useEffect(() => {
+    filterProducts();
+  }, [products, filters, filterProducts]);
 
   const handleEditClick = (product: Product) => {
     if (!product.id) {
