@@ -130,13 +130,13 @@ const Navbar = () => {
           {!isAuthenticated ? (
             <AuthButtonsContainer>
               <Link
-                href="https://2f25-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://c2f2-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignInButton>Sign In</SignInButton>
               </Link>
               <Link
-                href="https://2f25-179-62-88-219.ngrok-free.app/auth/google"
+                href="https://c2f2-179-62-88-219.ngrok-free.app/auth/google"
                 passHref
               >
                 <SignUpButton>Register</SignUpButton>
