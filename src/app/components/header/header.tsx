@@ -96,10 +96,10 @@ const Header = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <BackgroundLayer />
-      <HeaderContent>
-        <BackgroundAnimation />
-        <StyledTypography variant="h3" sx={{ fontWeight: 700 }}>
+{/*       <BackgroundLayer />
+ */}      <HeaderContent>
+{/*         <BackgroundAnimation />
+ */}        <StyledTypography variant="h3" sx={{ fontWeight: 700 }}>
           Revolutionize Your Tech Experience
         </StyledTypography>
         <StyledTypography
